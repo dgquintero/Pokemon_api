@@ -3,6 +3,7 @@ import os, json
 from django.conf import settings
 from django.shortcuts import render
 from collections import ChainMap
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Search
@@ -33,7 +34,17 @@ from django.http import Http404
             
 #    return render(request, 'search/index.html')
 
+
 def index(request):
+    pokemon = []
+    if request.method == 'POST':
+        f = open('api_data.json',)
+        data = json.load(f)
+        #print(data)
+        print(request.POST['search'])
+        for pokemon in data.key:
+            print(pokemon)
+        #print(data["name" == "bulbasaur")
     return render(request, 'search/index.html')
 
 class ListPokemon(APIView):
@@ -45,5 +56,10 @@ class ListPokemon(APIView):
 
     def get(self, request, name):
         search = self.get_object(name)
+
         search_json = "pokemon_api/api_data.json"
         return Response(search_json.data)
+
+class PokemonView(viewsets.ModelViewSet):
+    search_json = "pokemon_api/api_data.json"
+
