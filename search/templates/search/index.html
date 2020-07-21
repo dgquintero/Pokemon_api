@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Search YouTube</title>
+    <title>Search Pokemon</title>
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
@@ -32,15 +32,15 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Search YouTube</h1>
-      <p class="lead text-muted">Get the top nine results on YouTube for your query!</p>
+      <h1 class="jumbotron-heading">Search Pokemon</h1>
+      <p class="lead text-muted">Get the info for your favorite Pokemon</p>
       <form method="POST">
       <div class="input-group mb-3">
           {% csrf_token %}
           <input type="text" name="search" class="form-control" aria-label="Username">
       </div>
       <p>
-        <button type="submit" name="submit" value="search" class="btn btn-primary my-2">YouTube Search</button>
+        <button type="submit" name="submit" value="search" class="btn btn-primary my-2">Pokemon Search</button>
         <button type="submit" name="submit" value="lucky" class="btn btn-secondary my-2">I'm Feeling Lucky</button>
       </p>
       </form>
