@@ -9,6 +9,9 @@ from rest_framework.response import Response
 from .models import Search
 from django.http import Http404
 
+from .models import Search
+from rest_framework import generics
+from .serializers import SearchSerializer
 # request to the pokemon api with all information abou the pokemon
 #def index(request):
 #    res = []
@@ -35,31 +38,39 @@ from django.http import Http404
 #    return render(request, 'search/index.html')
 
 
-def index(request):
-    pokemon = []
-    if request.method == 'POST':
-        f = open('api_data.json',)
-        data = json.load(f)
-        #print(data)
-        print(request.POST['search'])
-        for pokemon in data.key:
-            print(pokemon)
-        #print(data["name" == "bulbasaur")
-    return render(request, 'search/index.html')
+#def index(request):
+#    pokemon = []
+#    if request.method == 'POST':
+#        f = open('api_data.json',)
+#        data = json.load(f)
+#        #print(data)
+#        f.close()
+#        print(data)
+#        #print(data[0].key)
+#        print(request.POST['search'])
+#           print(pokemon)
+#        for key in data[0]:
+#        #print(data["name" == "bulbasaur")
+#    return render(request, 'search/index.html')
 
-class ListPokemon(APIView):
-    def get_object(self, name):
-        try:
-            return Search.objects.get(name=name)
-        except Search.DoesNotExist:
-            raise Http404
+class SearchAPIView(generics.ListCreateAPIView): 
+    ''' generic api view countries model '''
+    queryset = Search.objects.all()
+    serializer_class = SearchSerializer
 
-    def get(self, request, name):
-        search = self.get_object(name)
+#class ListPokemon(APIView):
+    #def get_object(self, name):
+        #try:
+            #return Search.objects.get(name=name)
+        #except Search.DoesNotExist:
+            #raise Http404
 
-        search_json = "pokemon_api/api_data.json"
-        return Response(search_json.data)
+    #def get(self, request, name):
+        #search = self.get_object(name)
 
-class PokemonView(viewsets.ModelViewSet):
-    search_json = "pokemon_api/api_data.json"
+        #search_json = "pokemon_api/api_data.json"
+        #return Response(search_json.data)
+
+#class PokemonView(viewsets.ModelViewSet):
+    #search_json = "pokemon_api/api_data.json"
 

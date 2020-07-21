@@ -6,5 +6,4 @@ from rest_framework import routers
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('pokemon/(?P<name>[0-20]+)$', ListPokemon.as_view(), name='detail-pokemon')
 ]
