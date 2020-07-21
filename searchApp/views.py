@@ -12,7 +12,13 @@ from django.http import Http404
 from .models import Search
 from rest_framework import generics
 from .serializers import SearchSerializer
-# request to the pokemon api with all information abou the pokemon
+
+class SearchAPIView(generics.ListCreateAPIView): 
+    ''' generic api view countries model '''
+    queryset = Search.objects.all()
+    serializer_class = SearchSerializer
+
+# request to the pokemon api with all information about the pokemon
 #def index(request):
 #    res = []
 #    for i in range(1, 806):
@@ -32,12 +38,13 @@ from .serializers import SearchSerializer
 
 #               resu.update({stat['stat']['name']: stat['base_stat']})
 #        res.append(resu)
-#        with open('data.json', 'w') as f:
+#        with open('dapi_data.json', 'w') as f:
 #            json.dump(res, f)
             
 #    return render(request, 'search/index.html')
 
 
+# the view for the pokemon api
 #def index(request):
 #    pokemon = []
 #    if request.method == 'POST':
@@ -52,25 +59,3 @@ from .serializers import SearchSerializer
 #        for key in data[0]:
 #        #print(data["name" == "bulbasaur")
 #    return render(request, 'search/index.html')
-
-class SearchAPIView(generics.ListCreateAPIView): 
-    ''' generic api view countries model '''
-    queryset = Search.objects.all()
-    serializer_class = SearchSerializer
-
-#class ListPokemon(APIView):
-    #def get_object(self, name):
-        #try:
-            #return Search.objects.get(name=name)
-        #except Search.DoesNotExist:
-            #raise Http404
-
-    #def get(self, request, name):
-        #search = self.get_object(name)
-
-        #search_json = "pokemon_api/api_data.json"
-        #return Response(search_json.data)
-
-#class PokemonView(viewsets.ModelViewSet):
-    #search_json = "pokemon_api/api_data.json"
-

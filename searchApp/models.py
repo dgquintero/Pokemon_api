@@ -11,6 +11,5 @@ class Search(models.Model):
     special_attack = models.IntegerField()
     special_defense = models.IntegerField()
     speed = models.IntegerField()
-    Height = models.IntegerField()
+    height = models.IntegerField()
     weight = models.IntegerField()
-    #Evolutions =
